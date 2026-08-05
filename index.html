@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nguyen Van Kinh — AI Engineer</title>
+<meta name="description" content="AI Engineer building reliable, production-grade LLM systems — multi-agent architectures, RAG, and evaluation."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d141f; --bg2:#121b28; --bg3:#17223300; --panel:#131d2b;
+  --line:#25324a; --line2:#2f3f5c;
+  --ink:#e9eff7; --muted:#93a3bc; --faint:#647691;
+  --violet:#8b7cf6; --violet2:#a78bfa; --amber:#f2b054; --green:#57d68e;
+  --maxw:1080px;
+  --disp:'Space Grotesk',sans-serif; --body:'IBM Plex Sans',sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--body);
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--violet2);display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--violet)}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,20,31,.72);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.brand{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em}
+.brand span{color:var(--violet)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cv{
+  font-family:var(--mono);font-size:12.5px;color:var(--violet2)!important;
+  border:1px solid var(--line2);padding:7px 14px;border-radius:8px;transition:.2s
+}
+.nav-cv:hover{border-color:var(--violet);background:rgba(139,124,246,.08)}
+.nav-toggle{display:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:96px 0 64px;overflow:hidden}
+#nodefield{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.hero-in{position:relative;z-index:2}
+.hero h1{
+  font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-height:1.02;
+  font-size:clamp(40px,7vw,74px);margin-bottom:20px;
+}
+.hero h1 .accent{
+  background:linear-gradient(120deg,var(--violet2),var(--amber));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:640px;margin-bottom:34px}
+.hero .lead b{color:var(--ink);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:56px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;
+  padding:12px 20px;border-radius:10px;transition:.18s;border:1px solid transparent;
+}
+.btn svg{width:16px;height:16px}
+.btn-primary{background:var(--violet);color:#0d141f;font-weight:600}
+.btn-primary:hover{background:var(--violet2);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);background:rgba(139,124,246,.07);transform:translateY(-2px)}
+
+/* pipeline signature */
+.pipeline{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(19,29,43,.6),rgba(19,29,43,.25));padding:22px 24px}
+.pipeline-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.pipeline-svg{width:100%;height:74px;display:block}
+
+/* ---------- metrics ---------- */
+.metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.metrics-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.metric{padding:30px 24px;border-right:1px solid var(--line)}
+.metric:last-child{border-right:none}
+.metric .num{font-family:var(--disp);font-weight:700;font-size:30px;color:var(--amber);letter-spacing:-.01em}
+.metric .num .up{color:var(--green)}
+.metric .cap{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* ---------- sections ---------- */
+section{padding:82px 0}
+.sec-head{margin-bottom:44px}
+.sec-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em}
+.sec-head p{color:var(--muted);margin-top:10px;max-width:560px}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{
+  position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:26px;transition:.22s;display:flex;flex-direction:column;overflow:hidden;
+}
+.card::before{content:"";position:absolute;left:0;top:0;height:100%;width:3px;background:linear-gradient(var(--violet),var(--amber));opacity:0;transition:.22s}
+.card:hover{transform:translateY(-4px);border-color:var(--line2)}
+.card:hover::before{opacity:1}
+.card .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.card h3{font-family:var(--disp);font-weight:600;font-size:21px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.card h3 .emoji{font-size:20px}
+.card .role{font-size:14px;color:var(--violet2);margin-bottom:14px;font-weight:500}
+.card p.desc{font-size:14.5px;color:var(--muted);margin-bottom:16px;flex:1}
+.card .stat{font-family:var(--mono);font-size:13px;color:var(--ink);margin-bottom:6px;display:flex;gap:9px;align-items:baseline}
+.card .stat .dot{color:var(--amber)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 18px}
+.tag{font-family:var(--mono);font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 9px}
+.card-links{display:flex;gap:18px;margin-top:auto}
+.card-links a{font-size:13.5px;font-weight:500;color:var(--violet2);display:inline-flex;align-items:center;gap:6px;transition:.18s}
+.card-links a:hover{color:var(--amber)}
+.card-links svg{width:15px;height:15px}
+
+/* about + skills */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.about p{color:var(--muted);margin-bottom:16px}
+.about p b{color:var(--ink);font-weight:600}
+.skills h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+.skill-group{margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;color:var(--muted)}
+
+/* experience */
+.xp{border-left:1px solid var(--line);padding-left:30px;margin-left:6px}
+.xp-item{position:relative;padding-bottom:34px}
+.xp-item:last-child{padding-bottom:0}
+.xp-item::before{content:"";position:absolute;left:-36px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--violet)}
+.xp-item .when{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+.xp-item h3{font-family:var(--disp);font-weight:600;font-size:19px;margin:4px 0 2px}
+.xp-item .org{color:var(--violet2);font-size:14.5px;margin-bottom:8px}
+.xp-item p{color:var(--muted);font-size:14.5px}
+
+/* contact */
+.contact{text-align:center;background:var(--bg2);border-top:1px solid var(--line)}
+.contact h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;margin-bottom:16px}
+.contact .accent{color:var(--violet2)}
+.contact p{color:var(--muted);max-width:480px;margin:0 auto 30px}
+.contact .cta-row{justify-content:center}
+footer{border-top:1px solid var(--line);padding:26px 0}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-in span{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:13px;color:var(--muted);transition:.2s}
+.foot-links a:hover{color:var(--violet2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:860px){
+  .metrics-in{grid-template-columns:1fr 1fr}
+  .metric:nth-child(2){border-right:none}
+  .metric{border-bottom:1px solid var(--line)}
+  .proj-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:38px}
+  .nav-links{display:none}
+}
+@media(max-width:480px){
+  .metrics-in{grid-template-columns:1fr}
+  .metric{border-right:none;border-bottom:1px solid var(--line)}
+  .wrap{padding:0 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">Kinh<span>.</span></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cv" href="./Nguyen_Van_Kinh_CV.pdf">Résumé ↓</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg id="nodefield" preserveAspectRatio="xMidYMid slice"></svg>
+  <div class="wrap hero-in">
+    <div class="eyebrow">AI Engineer · Ho Chi Minh City</div>
+    <h1>Building AI systems<br>that work in <span class="accent">production</span>.</h1>
+    <p class="lead">I'm <b>Nguyen Van Kinh</b> — a Junior AI Engineer working on LLM-powered products:
+      <b>multi-agent architectures</b>, <b>RAG</b>, and retrieval, with a bias toward
+      evaluation, observability, and low-latency serving over one-off demos.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#work">View my work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/KinhNguyenVan" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.480-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/kinhnguyenvan/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipeline-label">// how a request flows through my agents</div>
+      <svg class="pipeline-svg" id="pipeline" viewBox="0 0 900 74" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </div>
+</header>
+
+<div class="metrics">
+  <div class="metrics-in wrap" style="padding-top:0;padding-bottom:0">
+    <div class="metric"><div class="num">75.5<span style="font-size:20px">%</span></div><div class="cap">SoccerBench SOTA<br>(69.3% → <span class="up" style="color:var(--green)">75.5%</span>)</div></div>
+    <div class="metric"><div class="num">−55<span style="font-size:20px">%</span></div><div class="cap">query latency<br>via semantic caching</div></div>
+    <div class="metric"><div class="num">3.81<span style="font-size:18px">/4</span></div><div class="cap">GPA · Data Science<br>VNU-HCM Univ. of Science</div></div>
+    <div class="metric"><div class="num">🥉</div><div class="cap">IEEE ICIP 2026<br>Grand Challenge · 3rd</div></div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Selected work</div>
+      <h2>Projects that ship and get measured</h2>
+      <p>Production agents, retrieval systems, and multimodal models — each with a benchmark or a real user in mind.</p>
+    </div>
+    <div class="proj-grid">
+
+      <article class="card reveal">
+        <div class="kicker">Multi-agent · LangGraph</div>
+        <h3><span class="emoji">⚽</span> SoccerAgent</h3>
+        <div class="role">Real-time soccer knowledge assistant</div>
+        <p class="desc">A production LangGraph agent answering live in-broadcast questions — player identity, game history, news, commentary — with parallel planning, guardrails, and a time-aware semantic cache.</p>
+        <div class="stat"><span class="dot">▸</span> SoccerBench 69.3% → <b>75.5%</b> (peak 96.4% text QA)</div>
+        <div class="stat"><span class="dot">▸</span> <b>−55%</b> repeated-query latency; +0.6s for 3-entity parallel</div>
+        <div class="tags">
+          <span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">LiteLLM</span><span class="tag">Qdrant</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/KinhNguyenVan/SoccerAgent" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            Repository</a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="kicker">Agentic backend · Tool-calling</div>
+        <h3><span class="emoji">🎬</span> CINEBOT</h3>
+        <div class="role">Conversational cinema-booking backend</div>
+        <p class="desc">An agent that doesn't just chat — it books tickets. It browses movies, checks seats, verifies identity, and completes real transactions entirely through conversation.</p>
+        <div class="stat"><span class="dot">▸</span> Gemini agent with <b>11 tools</b> + in-chat <b>OTP auth</b></div>
+        <div class="stat"><span class="dot">▸</span> FastAPI · async SQLAlchemy · deployed on Render</div>
+        <div class="tags">
+          <span class="tag">LangChain</span><span class="tag">Gemini</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">JWT/OTP</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/KinhNguyenVan/CINEBOT-BackEnd" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            Repository</a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="kicker">Multimodal retrieval · AI Challenge HCMC</div>
+        <h3><span class="emoji">🌌</span> GalaxyAssistant</h3>
+        <div class="role">Text-to-video event retrieval</div>
+        <p class="desc">Retrieves the exact keyframe matching a natural-language event — in Vietnamese or English, including multi-event temporal queries — over a large video corpus.</p>
+        <div class="stat"><span class="dot">▸</span> Gemini query rewrite + <b>SigLIP</b> visual recall</div>
+        <div class="stat"><span class="dot">▸</span> Hybrid <b>BM25 + bge-m3</b> (RRF) · two-stage rerank</div>
+        <div class="tags">
+          <span class="tag">SigLIP</span><span class="tag">Qdrant</span><span class="tag">bge-m3</span><span class="tag">BM25</span><span class="tag">Gemini</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/KinhNguyenVan/AIC-2025" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            Repository</a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="kicker">Research · Multimodal NLP</div>
+        <h3><span class="emoji">🎭</span> Sarcasm Detection</h3>
+        <div class="role">Vietnamese multimodal · ViMMSD</div>
+        <p class="desc">Detects sarcasm from image, caption, and OCR text jointly — using cross-attention fusion across three modalities on a heavily imbalanced dataset.</p>
+        <div class="stat"><span class="dot">▸</span> <b>ViSoBERT + DINOv2</b> with cross-attention fusion</div>
+        <div class="stat"><span class="dot">▸</span> Focal Loss + weighted sampling · <b>LoRA</b> fine-tuning</div>
+        <div class="tags">
+          <span class="tag">PyTorch</span><span class="tag">ViSoBERT</span><span class="tag">DINOv2</span><span class="tag">Transformers</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/KinhNguyenVan/VietNamese-MultiModal-Sarcasm-Detection" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            Repository</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap about-grid">
+    <div class="about reveal">
+      <div class="eyebrow">About</div>
+      <h2 style="font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.4vw,32px);margin-bottom:22px;letter-spacing:-.01em">From research idea to reliable product</h2>
+      <p>I'm a final-year Data Science student at <b>VNU-HCM University of Science</b> and a Junior AI Engineer building production LLM systems for enterprise and banking.</p>
+      <p>My interest sits where <b>research meets reliability</b>: designing agent and retrieval systems that are measured, observable, and fast enough for real use — not demos that only work once. Lately I've been going deeper into agent evaluation, retrieval quality, and low-latency serving.</p>
+      <p>I work comfortably across the stack — from PyTorch model code to FastAPI services, vector databases, and Docker deployment.</p>
+    </div>
+    <div class="skills reveal">
+      <div class="skill-group">
+        <h4>LLM / GenAI</h4>
+        <div class="chips"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG</span><span class="chip">Multi-agent</span><span class="chip">Langfuse</span><span class="chip">DeepEval</span><span class="chip">LiteLLM</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>ML / Computer Vision</h4>
+        <div class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">OpenCV</span><span class="chip">OCR</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend & Data</h4>
+        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Qdrant</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I've been building</h2>
+    </div>
+    <div class="xp">
+      <div class="xp-item reveal">
+        <div class="when">Feb 2026 — Present</div>
+        <h3>Junior AI Engineer</h3>
+        <div class="org">Namitech · NamiGen platform</div>
+        <p>Platform engineer on a multi-tenant conversational AI (voice + chat) serving 10–15 enterprise tenants from one config-driven codebase — dialog engine, RAG pods (Recall@5 ≈ 78%, 85% faithfulness), and real-time WebSocket delivery across Vietnamese, Japanese, and English.</p>
+      </div>
+      <div class="xp-item reveal">
+        <div class="when">Jul 2025 — Jan 2026</div>
+        <h3>AI Engineer — Internship</h3>
+        <div class="org">MetaData Solutions · 1Brain & Telehealth</div>
+        <p>Built multi-agent, graph-based retrieval that lifted query accuracy from 66% to 85% over native RAG, and a knowledge-graph medical assistant that improved chatbot accuracy from 62% to 83% (F1) with autonomous CRUD actions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center">Get in touch</div>
+    <h2>Let's build <span class="accent">reliable AI</span> together.</h2>
+    <p>Open to AI / LLM Engineer opportunities. The fastest way to reach me is email.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:kinh30072004k@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
+        kinh30072004k@gmail.com
+      </a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/kinhnguyenvan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="./Nguyen_Van_Kinh_CV.pdf">Résumé ↓</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Nguyen Van Kinh · Ho Chi Minh City</span>
+    <div class="foot-links">
+      <a href="https://github.com/KinhNguyenVan" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/kinhnguyenvan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:kinh30072004k@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- pipeline signature: nodes + traveling token ---- */
+(function(){
+  var svg=document.getElementById('pipeline');
+  if(!svg)return;
+  var stages=['Retrieve','Plan','Act','Evaluate'];
+  var W=900,H=74,n=stages.length;
+  var pad=70, gap=(W-pad*2)/(n-1), y=30;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var xs=[];for(var i=0;i<n;i++)xs.push(pad+gap*i);
+  var ns='http://www.w3.org/2000/svg';
+  // edges
+  for(var i=0;i<n-1;i++){
+    var l=document.createElementNS(ns,'line');
+    l.setAttribute('x1',xs[i]);l.setAttribute('y1',y);
+    l.setAttribute('x2',xs[i+1]);l.setAttribute('y2',y);
+    l.setAttribute('stroke','#2f3f5c');l.setAttribute('stroke-width','1.5');
+    svg.appendChild(l);
+  }
+  // nodes
+  stages.forEach(function(s,i){
+    var c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',xs[i]);c.setAttribute('cy',y);c.setAttribute('r',7);
+    c.setAttribute('fill','#131d2b');c.setAttribute('stroke','#8b7cf6');c.setAttribute('stroke-width','2');
+    svg.appendChild(c);
+    var t=document.createElementNS(ns,'text');
+    t.setAttribute('x',xs[i]);t.setAttribute('y',y+30);t.setAttribute('text-anchor','middle');
+    t.setAttribute('fill','#93a3bc');t.setAttribute('font-family',"'IBM Plex Mono',monospace");
+    t.setAttribute('font-size','12.5');t.textContent=s;
+    svg.appendChild(t);
+    var idx=document.createElementNS(ns,'text');
+    idx.setAttribute('x',xs[i]);idx.setAttribute('y',y-15);idx.setAttribute('text-anchor','middle');
+    idx.setAttribute('fill','#647691');idx.setAttribute('font-family',"'IBM Plex Mono',monospace");
+    idx.setAttribute('font-size','10');idx.textContent='0'+(i+1);
+    svg.appendChild(idx);
+  });
+  if(reduce)return;
+  // traveling token
+  var tok=document.createElementNS(ns,'circle');
+  tok.setAttribute('r',4.5);tok.setAttribute('fill','#f2b054');
+  tok.setAttribute('cx',xs[0]);tok.setAttribute('cy',y);
+  svg.appendChild(tok);
+  var start=null,dur=3600;
+  function frame(ts){
+    if(!start)start=ts;
+    var p=((ts-start)%dur)/dur;           // 0..1
+    var seg=p*(n-1), i=Math.floor(seg), f=seg-i;
+    if(i>=n-1){i=n-2;f=1;}
+    var x=xs[i]+(xs[i+1]-xs[i])*f;
+    tok.setAttribute('cx',x);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ---- faint node constellation background ---- */
+(function(){
+  var svg=document.getElementById('nodefield');
+  if(!svg)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var w=svg.clientWidth||window.innerWidth, h=svg.clientHeight||600;
+  svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  var ns='http://www.w3.org/2000/svg',N=Math.min(26,Math.floor(w/45)),pts=[];
+  for(var i=0;i<N;i++)pts.push({x:Math.random()*w,y:Math.random()*h});
+  for(var i=0;i<N;i++)for(var j=i+1;j<N;j++){
+    var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<150){
+      var l=document.createElementNS(ns,'line');
+      l.setAttribute('x1',pts[i].x);l.setAttribute('y1',pts[i].y);
+      l.setAttribute('x2',pts[j].x);l.setAttribute('y2',pts[j].y);
+      l.setAttribute('stroke','#8b7cf6');l.setAttribute('stroke-width','.5');
+      l.setAttribute('opacity',(1-d/150)*0.22);
+      svg.appendChild(l);
+    }
+  }
+  pts.forEach(function(p){
+    var c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',1.6);
+    c.setAttribute('fill','#a78bfa');c.setAttribute('opacity','.32');
+    svg.appendChild(c);
+  });
+})();
+
+/* ---- scroll reveal ---- */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  els.forEach(function(e,i){e.style.transitionDelay=(i%4*60)+'ms';io.observe(e);});
+})();
+</script>
+</body>
+</html>
