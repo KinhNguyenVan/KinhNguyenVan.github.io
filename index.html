@@ -4,13 +4,13 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nguyen Van Kinh — AI Engineer</title>
-<meta name="description" content="AI Engineer building reliable, production-grade LLM systems — multi-agent architectures, RAG, and evaluation."/>
+<meta name="description" content="AI Engineer building production LLM systems — AI agents, multi-agent architectures, and workflow automation, measured end to end."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0d141f; --bg2:#121b28; --bg3:#17223300; --panel:#131d2b;
+  --bg:#0d141f; --bg2:#121b28; --panel:#131d2b;
   --line:#25324a; --line2:#2f3f5c;
   --ink:#e9eff7; --muted:#93a3bc; --faint:#647691;
   --violet:#8b7cf6; --violet2:#a78bfa; --amber:#f2b054; --green:#57d68e;
@@ -25,6 +25,7 @@ body{
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 .mono{font-family:var(--mono)}
 .eyebrow{
@@ -50,7 +51,6 @@ nav{
   border:1px solid var(--line2);padding:7px 14px;border-radius:8px;transition:.2s
 }
 .nav-cv:hover{border-color:var(--violet);background:rgba(139,124,246,.08)}
-.nav-toggle{display:none}
 
 /* ---------- hero ---------- */
 .hero{position:relative;padding:96px 0 64px;overflow:hidden}
@@ -64,7 +64,7 @@ nav{
   background:linear-gradient(120deg,var(--violet2),var(--amber));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
-.hero .lead{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:640px;margin-bottom:34px}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:660px;margin-bottom:34px}
 .hero .lead b{color:var(--ink);font-weight:600}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:56px}
 .btn{
@@ -88,8 +88,9 @@ nav{
 .metric{padding:30px 24px;border-right:1px solid var(--line)}
 .metric:last-child{border-right:none}
 .metric .num{font-family:var(--disp);font-weight:700;font-size:30px;color:var(--amber);letter-spacing:-.01em}
-.metric .num .up{color:var(--green)}
+.metric .num small{font-size:18px}
 .metric .cap{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+.metric .cap .up{color:var(--green)}
 
 /* ---------- sections ---------- */
 section{padding:82px 0}
@@ -107,7 +108,7 @@ section{padding:82px 0}
 .card:hover{transform:translateY(-4px);border-color:var(--line2)}
 .card:hover::before{opacity:1}
 .card .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
-.card h3{font-family:var(--disp);font-weight:600;font-size:21px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.card h3{font-family:var(--disp);font-weight:600;font-size:21px;margin-bottom:6px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .card h3 .emoji{font-size:20px}
 .card .role{font-size:14px;color:var(--violet2);margin-bottom:14px;font-weight:500}
 .card p.desc{font-size:14.5px;color:var(--muted);margin-bottom:16px;flex:1}
@@ -119,6 +120,23 @@ section{padding:82px 0}
 .card-links a{font-size:13.5px;font-weight:500;color:var(--violet2);display:inline-flex;align-items:center;gap:6px;transition:.18s}
 .card-links a:hover{color:var(--amber)}
 .card-links svg{width:15px;height:15px}
+.card-note{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-top:auto}
+
+/* featured production card */
+.card.featured{grid-column:1/-1;border-color:var(--line2);background:linear-gradient(135deg,rgba(139,124,246,.07),rgba(242,176,84,.04)),var(--panel)}
+.card.featured::before{opacity:1}
+.feat-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:34px}
+.feat-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.fs{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(13,20,31,.45)}
+.fs .v{font-family:var(--disp);font-weight:700;font-size:24px;color:var(--amber);line-height:1.1}
+.fs .k{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+.live{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--green);
+  border:1px solid rgba(87,214,142,.35);border-radius:999px;padding:3px 10px;display:inline-flex;align-items:center;gap:6px
+}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.also{margin-top:16px;font-size:13.5px;color:var(--muted)}
+.also b{color:var(--ink);font-weight:500}
 
 /* about + skills */
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
@@ -137,7 +155,11 @@ section{padding:82px 0}
 .xp-item .when{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
 .xp-item h3{font-family:var(--disp);font-weight:600;font-size:19px;margin:4px 0 2px}
 .xp-item .org{color:var(--violet2);font-size:14.5px;margin-bottom:8px}
-.xp-item p{color:var(--muted);font-size:14.5px}
+.xp-item p{color:var(--muted);font-size:14.5px;max-width:760px}
+.xp-item ul{list-style:none;margin-top:10px;max-width:760px}
+.xp-item li{color:var(--muted);font-size:14.5px;padding-left:18px;position:relative;margin-bottom:6px}
+.xp-item li::before{content:"▸";position:absolute;left:0;color:var(--amber);font-size:12px;top:2px}
+.xp-item li b{color:var(--ink);font-weight:600}
 
 /* contact */
 .contact{text-align:center;background:var(--bg2);border-top:1px solid var(--line)}
@@ -162,13 +184,15 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   .metric:nth-child(2){border-right:none}
   .metric{border-bottom:1px solid var(--line)}
   .proj-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr;gap:22px}
   .about-grid{grid-template-columns:1fr;gap:38px}
-  .nav-links{display:none}
+  .nav-links a:not(.nav-cv){display:none}
 }
 @media(max-width:480px){
   .metrics-in{grid-template-columns:1fr}
   .metric{border-right:none;border-bottom:1px solid var(--line)}
   .wrap{padding:0 20px}
+  .feat-stats{grid-template-columns:1fr 1fr}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -186,7 +210,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cv" href="./Nguyen_Van_Kinh_CV.pdf">Résumé ↓</a>
+      <a class="nav-cv" href="https://github.com/KinhNguyenVan/KinhNguyenVan.github.io/blob/main/NguyenVanKinh.pdf" target="_blank" rel="noopener">Résumé ↓</a>
     </div>
   </div>
 </nav>
@@ -195,16 +219,17 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   <svg id="nodefield" preserveAspectRatio="xMidYMid slice"></svg>
   <div class="wrap hero-in">
     <div class="eyebrow">AI Engineer · Ho Chi Minh City</div>
-    <h1>Building AI systems<br>that work in <span class="accent">production</span>.</h1>
-    <p class="lead">I'm <b>Nguyen Van Kinh</b> — a Junior AI Engineer working on LLM-powered products:
-      <b>multi-agent architectures</b>, <b>RAG</b>, and retrieval, with a bias toward
-      evaluation, observability, and low-latency serving over one-off demos.</p>
+    <h1>Building AI agents<br>that work in <span class="accent">production</span>.</h1>
+    <p class="lead">I'm <b>Nguyen Van Kinh</b>, an AI Engineer building LLM-powered
+      <b>AI agents</b>, <b>multi-agent systems</b>, and <b>workflow automation</b>.
+      I take agentic systems from prototype to production and measure them end to end,
+      so they hold up with real users, not just in demos.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#work">View my work
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="btn btn-ghost" href="https://github.com/KinhNguyenVan" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.480-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
         GitHub
       </a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/kinhnguyenvan/" target="_blank" rel="noopener">LinkedIn</a>
@@ -212,16 +237,16 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 
     <div class="pipeline">
       <div class="pipeline-label">// how a request flows through my agents</div>
-      <svg class="pipeline-svg" id="pipeline" viewBox="0 0 900 74" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg class="pipeline-svg" id="pipeline" viewBox="0 0 900 74" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Route, retrieve, act, evaluate"></svg>
     </div>
   </div>
 </header>
 
 <div class="metrics">
   <div class="metrics-in wrap" style="padding-top:0;padding-bottom:0">
-    <div class="metric"><div class="num">75.5<span style="font-size:20px">%</span></div><div class="cap">SoccerBench SOTA<br>(69.3% → <span class="up" style="color:var(--green)">75.5%</span>)</div></div>
-    <div class="metric"><div class="num">−55<span style="font-size:20px">%</span></div><div class="cap">query latency<br>via semantic caching</div></div>
-    <div class="metric"><div class="num">3.81<span style="font-size:18px">/4</span></div><div class="cap">GPA · Data Science<br>VNU-HCM Univ. of Science</div></div>
+    <div class="metric"><div class="num">99<small>%</small></div><div class="cap">intent accuracy in production<br>(64% → <span class="up">99%</span>)</div></div>
+    <div class="metric"><div class="num">98<small>%</small></div><div class="cap">FAQ pass rate, ~1,800 tests<br>(46% → <span class="up">98%</span>)</div></div>
+    <div class="metric"><div class="num">1.3–2<small>s</small></div><div class="cap">voice time-to-first-audio<br>after the caller stops</div></div>
     <div class="metric"><div class="num">🥉</div><div class="cap">IEEE ICIP 2026<br>Grand Challenge · 3rd</div></div>
   </div>
 </div>
@@ -231,15 +256,40 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="sec-head reveal">
       <div class="eyebrow">Selected work</div>
       <h2>Projects that ship and get measured</h2>
-      <p>Production agents, retrieval systems, and multimodal models — each with a benchmark or a real user in mind.</p>
+      <p>Production agents, retrieval systems, and multimodal models, each with a benchmark or real users behind it.</p>
     </div>
     <div class="proj-grid">
+
+      <article class="card featured reveal">
+        <div class="kicker">Production · Namitech NamiGen platform</div>
+        <h3><span class="emoji">📞</span> Smart IVR for a Japanese city hall <span class="live">LIVE</span></h3>
+        <div class="role">Sagamihara City voice switchboard</div>
+        <div class="feat-grid">
+          <div>
+            <p class="desc">Residents call and speak naturally instead of pressing keypad menus. An LLM intent router decides whether to answer from the city's approved FAQ or transfer the call to the right on-duty department, with business-hours, night/holiday, and emergency routing. I owned the intent router and rebuilt FAQ answering, iterating through eval rounds until the system was ready for go-live.</p>
+            <div class="stat"><span class="dot">▸</span> 618-utterance intent test set · prompt cut 30k → 21k tokens</div>
+            <div class="stat"><span class="dot">▸</span> Verbatim FAQ answers · no-evidence → transfer, never invents</div>
+            <div class="stat"><span class="dot">▸</span> 363 calls handled in the first 3 hours live</div>
+            <div class="tags">
+              <span class="tag">LLM routing</span><span class="tag">Hybrid RAG</span><span class="tag">Qdrant</span><span class="tag">FastAPI</span><span class="tag">WebSocket</span><span class="tag">Amazon Bedrock</span>
+            </div>
+          </div>
+          <div class="feat-stats">
+            <div class="fs"><div class="v">64→99%</div><div class="k">intent accuracy</div></div>
+            <div class="fs"><div class="v">46→98%</div><div class="k">FAQ pass rate, &lt;1% wrong</div></div>
+            <div class="fs"><div class="v">634</div><div class="k">departments routable by voice</div></div>
+            <div class="fs"><div class="v">1.3–2s</div><div class="k">time to first bot audio</div></div>
+          </div>
+        </div>
+        <p class="also">Same platform, other clients: <b>Osaka City, Shidax, CBA</b> (smart IVR/FAQ, Japan), <b>REI</b> (bank card-lock line), <b>Rinnai</b> (hands-free cooking assistant), <b>BIDV, PVI</b> (Vietnam banking and insurance), and an AI screening-interview voicebot with STAR scoring.</p>
+        <div class="card-note">Private repository · client work</div>
+      </article>
 
       <article class="card reveal">
         <div class="kicker">Multi-agent · LangGraph</div>
         <h3><span class="emoji">⚽</span> SoccerAgent</h3>
         <div class="role">Real-time soccer knowledge assistant</div>
-        <p class="desc">A production LangGraph agent answering live in-broadcast questions — player identity, game history, news, commentary — with parallel planning, guardrails, and a time-aware semantic cache.</p>
+        <p class="desc">A LangGraph agent answering live in-broadcast questions (player identity, game history, news, commentary) with parallel planning, guardrails, and a time-aware semantic cache.</p>
         <div class="stat"><span class="dot">▸</span> SoccerBench 69.3% → <b>75.5%</b> (peak 96.4% text QA)</div>
         <div class="stat"><span class="dot">▸</span> <b>−55%</b> repeated-query latency; +0.6s for 3-entity parallel</div>
         <div class="tags">
@@ -256,7 +306,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <div class="kicker">Agentic backend · Tool-calling</div>
         <h3><span class="emoji">🎬</span> CINEBOT</h3>
         <div class="role">Conversational cinema-booking backend</div>
-        <p class="desc">An agent that doesn't just chat — it books tickets. It browses movies, checks seats, verifies identity, and completes real transactions entirely through conversation.</p>
+        <p class="desc">An agent that doesn't just chat, it books tickets. It browses movies, checks seats, verifies identity, and completes real transactions entirely through conversation.</p>
         <div class="stat"><span class="dot">▸</span> Gemini agent with <b>11 tools</b> + in-chat <b>OTP auth</b></div>
         <div class="stat"><span class="dot">▸</span> FastAPI · async SQLAlchemy · deployed on Render</div>
         <div class="tags">
@@ -273,7 +323,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <div class="kicker">Multimodal retrieval · AI Challenge HCMC</div>
         <h3><span class="emoji">🌌</span> GalaxyAssistant</h3>
         <div class="role">Text-to-video event retrieval</div>
-        <p class="desc">Retrieves the exact keyframe matching a natural-language event — in Vietnamese or English, including multi-event temporal queries — over a large video corpus.</p>
+        <p class="desc">Retrieves the exact keyframe matching a natural-language event, in Vietnamese or English and including multi-event temporal queries, over a large video corpus.</p>
         <div class="stat"><span class="dot">▸</span> Gemini query rewrite + <b>SigLIP</b> visual recall</div>
         <div class="stat"><span class="dot">▸</span> Hybrid <b>BM25 + bge-m3</b> (RRF) · two-stage rerank</div>
         <div class="tags">
@@ -290,7 +340,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         <div class="kicker">Research · Multimodal NLP</div>
         <h3><span class="emoji">🎭</span> Sarcasm Detection</h3>
         <div class="role">Vietnamese multimodal · ViMMSD</div>
-        <p class="desc">Detects sarcasm from image, caption, and OCR text jointly — using cross-attention fusion across three modalities on a heavily imbalanced dataset.</p>
+        <p class="desc">Detects sarcasm from image, caption, and OCR text jointly, using cross-attention fusion across three modalities on a heavily imbalanced dataset.</p>
         <div class="stat"><span class="dot">▸</span> <b>ViSoBERT + DINOv2</b> with cross-attention fusion</div>
         <div class="stat"><span class="dot">▸</span> Focal Loss + weighted sampling · <b>LoRA</b> fine-tuning</div>
         <div class="tags">
@@ -312,14 +362,14 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="about reveal">
       <div class="eyebrow">About</div>
       <h2 style="font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.4vw,32px);margin-bottom:22px;letter-spacing:-.01em">From research idea to reliable product</h2>
-      <p>I'm a final-year Data Science student at <b>VNU-HCM University of Science</b> and a Junior AI Engineer building production LLM systems for enterprise and banking.</p>
-      <p>My interest sits where <b>research meets reliability</b>: designing agent and retrieval systems that are measured, observable, and fast enough for real use — not demos that only work once. Lately I've been going deeper into agent evaluation, retrieval quality, and low-latency serving.</p>
-      <p>I work comfortably across the stack — from PyTorch model code to FastAPI services, vector databases, and Docker deployment.</p>
+      <p>I graduated in Data Science from <b>VNU-HCM University of Science</b> with an <b>Excellent</b> degree (GPA 3.81/4), and work as an AI Engineer at Namitech, shipping voice and chat agents for city governments, banks, and enterprises in Japan and Vietnam.</p>
+      <p>My interest sits where <b>research meets reliability</b>: designing agents, multi-agent systems, and automated workflows that are measured, observable, and fast enough for real use. I build test sets first, then iterate on measured results until the numbers hold.</p>
+      <p>I work comfortably across the stack, from PyTorch model code to FastAPI services, vector databases, real-time WebSocket delivery, and Docker deployment.</p>
     </div>
     <div class="skills reveal">
       <div class="skill-group">
-        <h4>LLM / GenAI</h4>
-        <div class="chips"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG</span><span class="chip">Multi-agent</span><span class="chip">Langfuse</span><span class="chip">DeepEval</span><span class="chip">LiteLLM</span></div>
+        <h4>AI agents / LLM</h4>
+        <div class="chips"><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">Multi-agent</span><span class="chip">RAG</span><span class="chip">Intent routing</span><span class="chip">LiteLLM</span><span class="chip">Langfuse</span><span class="chip">DeepEval</span><span class="chip">Azure OpenAI</span><span class="chip">Amazon Bedrock</span></div>
       </div>
       <div class="skill-group">
         <h4>ML / Computer Vision</h4>
@@ -327,7 +377,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
       </div>
       <div class="skill-group">
         <h4>Backend & Data</h4>
-        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Qdrant</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">WebSocket</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Qdrant</span><span class="chip">FalkorDB</span><span class="chip">Redis</span><span class="chip">Docker</span><span class="chip">CI/CD</span></div>
       </div>
     </div>
   </div>
@@ -342,9 +392,15 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     <div class="xp">
       <div class="xp-item reveal">
         <div class="when">Feb 2026 — Present</div>
-        <h3>Junior AI Engineer</h3>
-        <div class="org">Namitech · NamiGen platform</div>
-        <p>Platform engineer on a multi-tenant conversational AI (voice + chat) serving 10–15 enterprise tenants from one config-driven codebase — dialog engine, RAG pods (Recall@5 ≈ 78%, 85% faithfulness), and real-time WebSocket delivery across Vietnamese, Japanese, and English.</p>
+        <h3>AI Engineer</h3>
+        <div class="org">Namitech · NamiGen voice & chat agent platform</div>
+        <p>Multi-tenant, config-driven platform for smart IVR, FAQ, and call-transfer agents in Vietnamese, Japanese, and English.</p>
+        <ul>
+          <li>Owned the LLM intent router for a city-hall voicebot now in production: <b>64% → 99%</b> accuracy over 4 eval rounds on a 618-utterance test set.</li>
+          <li>Rebuilt FAQ answering on hybrid retrieval with reranking and a no-evidence → transfer fallback: <b>46% → 98%</b> pass rate on ~1,800 test questions, &lt;1% wrong.</li>
+          <li>Extended the graph-based dialog engine (go-back, repeat, clarify escalation, silence handling) and added Amazon Bedrock support.</li>
+          <li>Shipped voicebots for <b>10+ clients</b> at <b>1.3–2s</b> time-to-first-audio; new PoCs ship in <b>1–3 weeks</b> instead of 1–2 months.</li>
+        </ul>
       </div>
       <div class="xp-item reveal">
         <div class="when">Jul 2025 — Jan 2026</div>
@@ -367,7 +423,7 @@ footer{border-top:1px solid var(--line);padding:26px 0}
         kinh30072004k@gmail.com
       </a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/kinhnguyenvan/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="./Nguyen_Van_Kinh_CV.pdf">Résumé ↓</a>
+      <a class="btn btn-ghost" href="https://github.com/KinhNguyenVan/KinhNguyenVan.github.io/blob/main/NguyenVanKinh.pdf" target="_blank" rel="noopener">Résumé ↓</a>
     </div>
   </div>
 </section>
@@ -388,13 +444,11 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 (function(){
   var svg=document.getElementById('pipeline');
   if(!svg)return;
-  var stages=['Retrieve','Plan','Act','Evaluate'];
-  var W=900,H=74,n=stages.length;
-  var pad=70, gap=(W-pad*2)/(n-1), y=30;
+  var stages=['Route','Retrieve','Act','Evaluate'];
+  var W=900,y=30,n=stages.length,pad=70,gap=(W-pad*2)/(n-1);
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var xs=[];for(var i=0;i<n;i++)xs.push(pad+gap*i);
   var ns='http://www.w3.org/2000/svg';
-  // edges
   for(var i=0;i<n-1;i++){
     var l=document.createElementNS(ns,'line');
     l.setAttribute('x1',xs[i]);l.setAttribute('y1',y);
@@ -402,7 +456,6 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     l.setAttribute('stroke','#2f3f5c');l.setAttribute('stroke-width','1.5');
     svg.appendChild(l);
   }
-  // nodes
   stages.forEach(function(s,i){
     var c=document.createElementNS(ns,'circle');
     c.setAttribute('cx',xs[i]);c.setAttribute('cy',y);c.setAttribute('r',7);
@@ -420,7 +473,6 @@ footer{border-top:1px solid var(--line);padding:26px 0}
     svg.appendChild(idx);
   });
   if(reduce)return;
-  // traveling token
   var tok=document.createElementNS(ns,'circle');
   tok.setAttribute('r',4.5);tok.setAttribute('fill','#f2b054');
   tok.setAttribute('cx',xs[0]);tok.setAttribute('cy',y);
@@ -428,11 +480,9 @@ footer{border-top:1px solid var(--line);padding:26px 0}
   var start=null,dur=3600;
   function frame(ts){
     if(!start)start=ts;
-    var p=((ts-start)%dur)/dur;           // 0..1
-    var seg=p*(n-1), i=Math.floor(seg), f=seg-i;
+    var p=((ts-start)%dur)/dur, seg=p*(n-1), i=Math.floor(seg), f=seg-i;
     if(i>=n-1){i=n-2;f=1;}
-    var x=xs[i]+(xs[i+1]-xs[i])*f;
-    tok.setAttribute('cx',x);
+    tok.setAttribute('cx',xs[i]+(xs[i+1]-xs[i])*f);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -442,7 +492,6 @@ footer{border-top:1px solid var(--line);padding:26px 0}
 (function(){
   var svg=document.getElementById('nodefield');
   if(!svg)return;
-  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var w=svg.clientWidth||window.innerWidth, h=svg.clientHeight||600;
   svg.setAttribute('viewBox','0 0 '+w+' '+h);
   var ns='http://www.w3.org/2000/svg',N=Math.min(26,Math.floor(w/45)),pts=[];
